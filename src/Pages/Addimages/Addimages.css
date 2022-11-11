@@ -1,0 +1,35 @@
+.add-images-layout{
+    max-height: 70vh;
+    padding: 30px;
+}
+
+/* .ant-upload{
+    border: 1px solid #707070 !important;
+    opacity: 1 !important;
+    height: 130px !important;
+    width: 200px !important;
+} */
+.upload-design{
+    border: 1px solid #707070 !important;
+    opacity: 1 !important;
+    height: 130px !important;
+    width: 200px !important;
+}
+
+
+
+/* .ant-upload-list-picture-card-container {
+    display: inline-block;
+    width: 200px !important;
+    height: 130px !important;
+    margin: 0 8px 8px 0;
+    vertical-align: top;
+} */
+.addimage-btn{
+    /* height: 130px ; */
+    /* width: 200px ; */
+    /* padding: 10px; */
+}
+.img-submit-btn{
+ width: 102px;
+}

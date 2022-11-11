@@ -1,0 +1,175 @@
+.project-container {
+  max-height: 70vh;
+  padding: 30px;
+}
+.overall-cards-layout {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* margin:50px; */
+}
+
+/* card layout css */
+.card-layout {
+  margin: 15px;
+  padding: 15px;
+  width: 250px;
+  height: 370px;
+  border: 1px solid #707070;
+}
+
+/* card image css */
+.card-image {
+  width: 130px;
+}
+.project-image {
+  padding: 40px;
+  height: 150px;
+}
+.project-Text-container{
+  height: 170px;
+}
+.create-new-text {
+  color: #2b2b2b;
+  font-size: 20px;
+}
+.project-model-task-container{
+  display: flex;
+  flex-direction: column;
+  gap:1px;
+  justify-content: center;
+}
+.project-model{
+  color: #9a9a9a;
+  font-size: 12px;
+  margin-bottom: 0rem !important;
+}
+.project-task{
+  color: #9a9a9a;
+  font-size: 12px;
+}
+.create-project-span {
+  font: normal;
+  color: #9a9a9a;
+}
+.project-action-icons{
+ display: flex;
+ flex-direction: row;
+ justify-content: flex-end;
+ gap: 10px;
+ height: 40px;
+ /* margin-top: 40px; */
+}
+/* create project model */
+.create-project-model {
+  /* UI Properties */
+  background: #ffffff 0% 0% no-repeat padding-box !important;
+  box-shadow: 5px 5px 6px #00000029 !important;
+  border: 1px solid #707070 !important;
+  /* border-radius: 20px !important; */
+
+  /* opacity: 1 !important; */
+  /* backdrop-filter: blur(30px) !important; */
+  /* -webkit-backdrop-filter: blur(30px) !important; */
+}
+
+.ant-modal-content {
+  /* border-radius: 20px !important;
+  
+  background: #ffffff 0% 0% no-repeat padding-box !important;
+  box-shadow: 5px 5px 6px #00000029 !important;
+  border: 1px solid #707070 !important;
+  border-radius: 20px;
+  opacity: 1;
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px); */
+}
+
+.ant-btn-primary {
+  /* background: #1277DB 0% 0% no-repeat padding-box; */
+  /* box-shadow: 5px 3px 6px #00000029 !important; */
+  /* border: 1px solid #707070 !important;
+    border-radius: 9px !important; */
+  /* opacity: 1 !important; */
+}
+
+.ant-btn-default {
+  /* background: #DBDBDB 0% 0% no-repeat padding-box !important;
+    box-shadow: 5px 3px 6px #00000029 !important;
+    border: 1px solid #C6C6C6 !important;
+    border-radius: 9px !important;
+    opacity: 1 !important; */
+}
+
+.modal-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 400px;
+  
+}
+
+.create-project-title {
+  /* top: 112px;
+    left: 861px; 
+    width: 300px; */
+  /* height: 40px; */
+  text-align: center;
+  font: normal normal bold 24px/40px Segoe UI;
+  letter-spacing: 0px;
+  color: #707070;
+  opacity: 1;
+}
+
+.label {
+  /* top: 197px;
+  left: 634px;
+  width: 103px;
+  height: 27px; */
+  text-align: left;
+  font: normal normal normal 20px/27px Segoe UI;
+  letter-spacing: 0px;
+  opacity: 1;
+}
+
+.modal-input{
+  width: 400px;
+  border-radius: .5rem;
+}
+.modal-txtarea{
+  border-radius: .5rem;
+  width: 400px !important;
+}
+.modal-select{
+  border-radius: .5rem !important;
+  width: 400px !important;
+}
+/* textarea.ant-input {
+  max-width: 400px !important;
+  height: auto;
+  min-height: 32px;
+  line-height: 1.5715;
+  vertical-align: bottom;
+  transition: all 0.3s, height 0s;
+} */
+/* .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+  width: 400px !important;
+  height: 32px;
+  padding: 0 11px;
+  border: 1px solid #d9d9d9 !important;
+} */
+
+/* need to check further */
+.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  position: relative;
+  background-color: #fff;
+  border: 1px solid #d9d9d9;
+  border-radius: 0.5rem !important;
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.modal-innerlayout{
+  padding: 30px;
+}
+.modal-btn{
+  margin-right: 2%;
+}

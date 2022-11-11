@@ -1,0 +1,16 @@
+@import '~antd/dist/antd.css';
+
+.training-layout{
+    /* margin: 50px; */
+    max-height: 70vh;
+    padding: 30px;
+}
+
+.training-form-container{
+    /* margin-top: 50px; */
+    /* padding: 30px; */
+}
+
+/* .ant-pagination li{
+    width: 0 !important;
+} */

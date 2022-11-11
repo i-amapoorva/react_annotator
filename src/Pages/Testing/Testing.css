@@ -1,0 +1,21 @@
+.test-layout {
+  max-height: 70vh;
+  padding:30px;
+  display: flex;
+  justify-content: center;
+}
+.test-form-container {
+  width: 60vw;
+  
+}
+/* .test-form{
+  padding: 30px;
+} */
+.test-submit-btn-container {
+  width: 60vw;
+  display: flex !important;
+  justify-content: center !important;
+}
+.test-submit-btn {
+  width: 150px !important;
+}
