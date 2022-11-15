@@ -2,7 +2,7 @@ import React from "react";
 // import { Link, NavLink } from "react-router-dom";
 // import { NavLink, BrowserRouter as Router } from "react-router-dom";
 import "../Navbar/Navbar.css";
-// import TokenService from "../../Components/Service/TokenService";
+import TokenService from "../../Components/Service/TokenService";
 
 const classNameFunc = ({ isActive }) => (isActive ? "active_link" : "");
 
@@ -15,7 +15,7 @@ function Navbar() {
 
 // }
 
-  // const projectDetails = TokenService.getProjectDetails();
+  const projectDetails = TokenService.getProjectDetails();
   return (
     <div className="nav-container">
       <ul>
@@ -27,7 +27,7 @@ function Navbar() {
           >
             Images
           </NavLink> */}
-          <a href="/add-images">Images </a>
+          <a href={projectDetails ? "/add-images" : "/projects"}>Images </a>
         </li>
         <li>
           {/* <NavLink

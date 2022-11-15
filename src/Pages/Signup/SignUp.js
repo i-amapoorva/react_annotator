@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { Button, Form, Input, message } from "antd";
 import logo from "../../assets/DTC-logo.png";
 // import "../login/login.styles.css";
@@ -8,11 +8,12 @@ import "../Signup/SignUp.css";
 
 function SignUp() {
   const [form] = Form.useForm();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   /* sign up api funcationality begins */
   const onFinish = (values) => {
       values['UserName'] = "Venkat";
+      values['companyId'] = "A087E96D-E4CD-4CCC-8CCF-468927B1708B"
       api("/User/Register", {
         method: "POST",
         data: JSON.stringify(values),
@@ -31,7 +32,8 @@ function SignUp() {
               textAlign:"right"
             },
           });
-          navigate("/");
+          // navigate("/");
+          window.location.replace('/login')
         })
         .catch((err) => {
           console.log(err);
@@ -75,7 +77,10 @@ function SignUp() {
                     { required: true },
                     {
                         pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/,   
-                        message: 'Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character',
+                        message: 'Minimum eight characters', 
+                        // at least one uppercase letter,
+                        //  one lowercase letter, 
+                        //  one number and one special character,
                       },
                 ]}>
                     <Input type="password" className="login-input" />
@@ -118,7 +123,7 @@ function SignUp() {
         <div className="signup-final-div">
           <p className="ptext">
             Already have an account?{" "}
-            <a href="/" className="spansignup">
+            <a href="login" className="spansignup">
               SIGN IN
             </a>
           </p>

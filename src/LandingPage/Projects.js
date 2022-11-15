@@ -4,21 +4,21 @@ import newProjectIcon from "../assets/add-icon.png"
 import "./Projects.css";
 import { Option } from "antd/lib/mentions";
 // import Header from "../../Components/Header/Header";
-// import api from "../../Components/Service/Api";
+ import api from "../Components/Service/Api";
 import ProjectCard from "./ProjectCard";
-// import TokenService from "../../Components/Service/TokenService";
+ import TokenService from "../Components/Service/TokenService";
 import TextArea from "antd/lib/input/TextArea";
 import Header from "../Components/Header/Header";
-// import { useNavigate } from "react-router-dom";
+//  import { useNavigate } from "react-router-dom";
 
 function Projects() {
   useEffect(() => {
-    // TokenService.removeProjectDetails();
-    // loadProjects();
-    // loadTaskTypes();
+    TokenService.removeProjectDetails();
+    loadProjects();
+    loadTaskTypes();
   }, []);
 
-  // const navigate = useNavigate();
+  //  const navigate = useNavigate();
   const [form] = Form.useForm();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoaded, setisLoaded] = useState(false);
@@ -41,115 +41,115 @@ function Projects() {
   };
 
   /* start of  create new project API*/
-  // const onFinish = (values) => {
-  //   console.log(values);
-  //   values["companyId"] = "3fa85f64-5717-4562-b3fc-2c963f66afa6";
-  //   console.log(values);
-  //   api("/Project", {
-  //     method: "POST",
-  //     data: JSON.stringify(values),
-  //     mode: "cors",
-  //   })
-  //     .then((res) => {
-  //       let response = res.data;
-  //       console.log(response);
-  //       message.success({
-  //         content:
-  //           "Project created successfully with name " + values["projectName"],
-  //         duration: "5",
-  //         className: "custom-class",
-  //         style: {
-  //           marginTop: "5vh",
-  //           marginRight: "5vh",
-  //           fontSize: "15px",
-  //           textAlign: "right",
-  //         },
-  //       });
-  //       onReset();
-  //       setIsModalOpen(false);
-  //       // alert("inproject");
-  //       // navigate("/projects");
-  //       window.location.reload();
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       let error = err.response.data;
-  //       if (error.success === false) {
-  //         console.log("error");
-  //         message.error({
-  //           content: "Project name already exist",
-  //           duration: "5",
-  //           className: "custom-class",
-  //           style: {
-  //             marginTop: "5vh",
-  //             marginRight: "5vh",
-  //             fontSize: "15px",
-  //             textAlign: "right",
-  //           },
-  //         });
-  //       }
-  //     });
-  // };
+  const onFinish = (values) => {
+    console.log(values);
+    values["companyId"] = "3fa85f64-5717-4562-b3fc-2c963f66afa6";
+    console.log(values);
+    api("/Project", {
+      method: "POST",
+      data: JSON.stringify(values),
+      mode: "cors",
+    })
+      .then((res) => {
+        let response = res.data;
+        console.log(response);
+        message.success({
+          content:
+            "Project created successfully with name " + values["projectName"],
+          duration: "5",
+          className: "custom-class",
+          style: {
+            marginTop: "5vh",
+            marginRight: "5vh",
+            fontSize: "15px",
+            textAlign: "right",
+          },
+        });
+        onReset();
+        setIsModalOpen(false);
+        alert("inproject");
+        // window.location.replace("/projects");
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+        let error = err.response.data;
+        if (error.success === false) {
+          console.log("error");
+          message.error({
+            content: "Project name already exist",
+            duration: "5",
+            className: "custom-class",
+            style: {
+              marginTop: "5vh",
+              marginRight: "5vh",
+              fontSize: "15px",
+              textAlign: "right",
+            },
+          });
+        }
+      });
+  };
   /* end of create new project API */
 
   /* Start load projects API */
-  // const loadProjects = (values) => {
-  //   api("/Project/getallprojects", {
-  //     method: "GET",
-  //   })
-  //     .then((res) => {
-  //       let response = res.data;
-  //       setProjects(response.project);
-  //       setisLoaded(true);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       let error = err.response.data;
-  //       if (error.status === false) {
-  //         console.log("error");
-  //       }
-  //     });
-  // };
+  const loadProjects = (values) => {
+    api("/Project/getallprojects", {
+      method: "GET",
+    })
+      .then((res) => {
+        let response = res.data;
+        setProjects(response.project);
+        setisLoaded(true);
+      })
+      .catch((err) => {
+        console.log(err);
+        let error = err.response.data;
+        if (error.status === false) {
+          console.log("error");
+        }
+      });
+  };
   // /* end of load projects API */
 
-  // const loadTaskTypes = () => {
-  //   setSelectedModel(null);
-  //   api("/ModelTask/GetAllModelTasks", {
-  //     method: "GET",
-  //   })
-  //     .then((res) => {
-  //       let response = res.data;
-  //       console.log(response);
-  //       setTaskTypes(response.modelTask);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       let error = err.response.data;
-  //       if (error.status === false) {
-  //         console.log("error");
-  //       }
-  //     });
-  // };
+  const loadTaskTypes = () => {
+    setSelectedModel(null);
+    api("/ModelTask/GetAllModelTasks", {
+      method: "GET",
+    })
+      .then((res) => {
+        let response = res.data;
+        console.log(response);
+        setTaskTypes(response.modelTask);
+      })
+      .catch((err) => {
+        console.log(err);
+        let error = err.response.data;
+        if (error.status === false) {
+          console.log("error");
+        }
+      });
+  };
 
-  // const loadModel = (e) => {
-  //   form.resetFields(["ModelId"]);
-  //   console.log(e);
-  //   api("/Model/GetModelsOnTask/" + e, {
-  //     method: "GET",
-  //   })
-  //     .then((res) => {
-  //       let response = res.data;
-  //       console.log(response);
-  //       setModels(response.models);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       let error = err.response.data;
-  //       if (error.status === false) {
-  //         console.log("error");
-  //       }
-  //     });
-  // };
+  const loadModel = (e) => {
+    form.resetFields(["ModelId"]);
+    console.log(e);
+    api("/Model/GetModelsOnTask/" + e, {
+      method: "GET",
+    })
+      .then((res) => {
+        let response = res.data;
+        console.log(response);
+        setModels(response.models);
+      })
+      .catch((err) => {
+        console.log(err);
+        let error = err.response.data;
+        if (error.status === false) {
+          console.log("error");
+        }
+      });
+  };
 
   const onReset = () => {
     form.resetFields();
@@ -192,7 +192,7 @@ function Projects() {
         <Form
           form={form}
           name="control-hooks"
-          // onFinish={onFinish}
+           onFinish={onFinish}
           className="modal-innerlayout"
         >
           <p className="create-project-title">Create New Project</p>
@@ -237,7 +237,7 @@ function Projects() {
               // optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
               // }
               onChange={(e, label) => {
-                // loadModel(e);
+                 loadModel(e);
               }}
             >
               {taskTypes.map((item, i) => {

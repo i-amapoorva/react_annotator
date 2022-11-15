@@ -1,9 +1,9 @@
 import { Button, Form, Select, Table, Space, Pagination, message } from "antd";
-// import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import React, { useState, useEffect } from "react";
 import { Option } from "antd/lib/mentions";
-// import api from "../../Components/Service/Api";
+import api from "../../Components/Service/Api";
 import "./Training.css";
 import Header from "../../Components/Header/Header";
 import Navbar from "../../Components/Navbar/Navbar";
@@ -11,76 +11,76 @@ import Navbar from "../../Components/Navbar/Navbar";
 const { Column } = Table;
 
 const Training = () => {
-  // const project_id = useParams();
-  // const id = project_id.id;
+   const project_id = useParams();
+   const id = project_id.id;
 
   useEffect(() => {
-    // loadTrainings(id);
+     loadTrainings(id);
   }, []);
 
   const [form] = Form.useForm();
   const [Trainings, setTrainings] = useState([]);
 
-  // const loadTrainings = () => {
-  //   api("/Training/GetTrainingList/"+id, {
-  //     method: "GET",
-  //   })
-  //     .then((res) => {
-  //       let result = res.data;
-  //       console.log(result.trainingList);
-  //       setTrainings(result.trainingList);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       let error = err.response;
-  //       if (error.success === false) {
-  //         console.log("error");
-  //       }
-  //     });
-  // };
+  const loadTrainings = () => {
+    api("/Training/GetTrainingList/"+id, {
+      method: "GET",
+    })
+      .then((res) => {
+        let result = res.data;
+        console.log(result.trainingList);
+        setTrainings(result.trainingList);
+      })
+      .catch((err) => {
+        console.log(err);
+        let error = err.response;
+        if (error.success === false) {
+          console.log("error");
+        }
+      });
+  };
 
-  // const onFinish = (values) => {
-  //   console.log("Received values of form:", values);
-  //   values["ProjectId"] = id;
-  //   console.log(values);
-  //   api("/Training", {
-  //     method: "POST",
-  //     data: JSON.stringify(values),
-  //   })
-  //     .then((res) => {
-  //       let response = res.data;
-  //       console.log(response);
-  //       message.success({
-  //         content: response.response.message,
-  //         duration: "5",
-  //         className: "custom-class",
-  //         style: {
-  //           marginTop: "5vh",
-  //           marginRight: "5vh",
-  //           fontSize: "15px",
-  //           textAlign: "right",
-  //         },
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       let error = err.response.data.response;
-  //       if (error.success === false) {
-  //         console.log(error.message);
-  //         message.error({
-  //           content: error.message,
-  //           duration: "5",
-  //           className: "custom-class",
-  //           style: {
-  //             marginTop: "5vh",
-  //             marginRight: "5vh",
-  //             fontSize: "15px",
-  //             textAlign: "right",
-  //           },
-  //         });
-  //       }
-  //     });
-  // };
+  const onFinish = (values) => {
+    console.log("Received values of form:", values);
+    values["ProjectId"] = id;
+    console.log(values);
+    api("/Training", {
+      method: "POST",
+      data: JSON.stringify(values),
+    })
+      .then((res) => {
+        let response = res.data;
+        console.log(response);
+        message.success({
+          content: response.response.message,
+          duration: "5",
+          className: "custom-class",
+          style: {
+            marginTop: "5vh",
+            marginRight: "5vh",
+            fontSize: "15px",
+            textAlign: "right",
+          },
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        let error = err.response.data.response;
+        if (error.success === false) {
+          console.log(error.message);
+          message.error({
+            content: error.message,
+            duration: "5",
+            className: "custom-class",
+            style: {
+              marginTop: "5vh",
+              marginRight: "5vh",
+              fontSize: "15px",
+              textAlign: "right",
+            },
+          });
+        }
+      });
+  };
 
   return (
     <div className="container">
@@ -90,7 +90,7 @@ const Training = () => {
         <div className="training-table-container">
           <div className="table_layout">
             <Table pagination={false}
-            //  dataSource={Trainings}
+              dataSource={Trainings}
              >
               {/* <ColumnGroup title="Name">
         <Column title="First Name" dataIndex="firstName" key="firstName" />

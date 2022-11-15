@@ -2,19 +2,20 @@ import { Button, Form, Input, Modal, message, Select } from "antd";
 import { Option } from "antd/lib/mentions";
 import React, { useEffect, useState } from "react";
 import TextArea from "antd/lib/input/TextArea";
-// import project2 from "../../assets/businesspeople-working.jpg";
+import project2 from "../assets/businesspeople-working.jpg";
 // import { useNavigate } from "react-router-dom";
-// import TokenService from "../../Components/Service/TokenService";
+ import TokenService from "../Components/Service/TokenService";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import "./Projects.css";
-// import api from "../../Components/Service/Api";
+import api from "../Components/Service/Api";
 
 function ProjectCard({ projectDetails }) {
   // const navigate = useNavigate();
-  // const handleProject = () => {
-  //   TokenService.setProjectDetails(projectDetails);
-  //   navigate("/add-images/" + projectDetails.id);
-  // };
+  const handleProject = () => {
+    TokenService.setProjectDetails(projectDetails);
+    //window.location.replace("/add-images/" + projectDetails.id);
+    window.location.replace("/add-images");
+  };
 
   const [isLoaded, setisLoaded] = useState(false);
   const [projects, setProjects] = useState([]);
@@ -35,63 +36,63 @@ function ProjectCard({ projectDetails }) {
     });
   }, []);
 
-  // const loadProjects = (values) => {
-  //   api("/Project/getallprojects", {
-  //     method: "GET",
-  //   })
-  //     .then((res) => {
-  //       let response = res.data;
-  //       setProjects(response.project);
-  //       setisLoaded(true);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       let error = err.response.data;
-  //       if (error.status === false) {
-  //         console.log("error");
-  //       }
-  //     });
-  // };
+  const loadProjects = (values) => {
+    api("/Project/getallprojects", {
+      method: "GET",
+    })
+      .then((res) => {
+        let response = res.data;
+        setProjects(response.project);
+        setisLoaded(true);
+      })
+      .catch((err) => {
+        console.log(err);
+        let error = err.response.data;
+        if (error.status === false) {
+          console.log("error");
+        }
+      });
+  };
 
 
-  // const loadTaskTypes = () => {
-  //   setSelectedModel(null);
-  //   api("/ModelTask/GetAllModelTasks", {
-  //     method: "GET",
-  //   })
-  //     .then((res) => {
-  //       let response = res.data;
-  //       console.log(response);
-  //       setTaskTypes(response.modelTask);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       let error = err.response.data;
-  //       if (error.status === false) {
-  //         console.log("error");
-  //       }
-  //     });
-  // };
+  const loadTaskTypes = () => {
+    setSelectedModel(null);
+    api("/ModelTask/GetAllModelTasks", {
+      method: "GET",
+    })
+      .then((res) => {
+        let response = res.data;
+        console.log(response);
+        setTaskTypes(response.modelTask);
+      })
+      .catch((err) => {
+        console.log(err);
+        let error = err.response.data;
+        if (error.status === false) {
+          console.log("error");
+        }
+      });
+  };
 
-  // const loadModel = (e) => {
-  //   form.resetFields(["ModelId"]);
-  //   console.log(e);
-  //   api("/Model/GetModelsOnTask/" + e, {
-  //     method: "GET",
-  //   })
-  //     .then((res) => {
-  //       let response = res.data;
-  //       console.log(response);
-  //       setModels(response.models);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       let error = err.response.data;
-  //       if (error.status === false) {
-  //         console.log("error");
-  //       }
-  //     });
-  // };
+  const loadModel = (e) => {
+    form.resetFields(["ModelId"]);
+    console.log(e);
+    api("/Model/GetModelsOnTask/" + e, {
+      method: "GET",
+    })
+      .then((res) => {
+        let response = res.data;
+        console.log(response);
+        setModels(response.models);
+      })
+      .catch((err) => {
+        console.log(err);
+        let error = err.response.data;
+        if (error.status === false) {
+          console.log("error");
+        }
+      });
+  };
 
   const showModal = () => {
     console.log("name");
@@ -116,15 +117,15 @@ function ProjectCard({ projectDetails }) {
     //   >
     <div className="card-layout">
       <div className="project-image" 
-      // onClick={() => handleProject()}
+       onClick={() => handleProject()}
       >
-        {/* <img src={project2} alt="" className="card-image" /> */}
+        <img src={project2} alt="" className="card-image" />
       </div>
       <div className="project-Text-container">
         <p className="create-new-text">{projectDetails.projectName}</p>
         <div className="project-model-task-container">
-          <p className="project-model">Model :</p>
-          <p className="project-task">Task Type :</p>
+          <p className="project-model">Model : {projectDetails.modelTask}</p>
+          <p className="project-task">Task Type :{projectDetails.taskTypes}</p>
         </div>
         <span className="create-project-span">
           {projectDetails.projectDescription}

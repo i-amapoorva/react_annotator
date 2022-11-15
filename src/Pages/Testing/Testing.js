@@ -1,9 +1,9 @@
 import { Button, Form, Select, Table, Input, Pagination, message } from "antd";
-// import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import React, { useEffect, useState } from "react";
 import { Option } from "antd/lib/mentions";
-// import api from "../../Components/Service/Api";
+import api from "../../Components/Service/Api";
 import "./Testing.css";
 import Header from "../../Components/Header/Header";
 import Navbar from "../../Components/Navbar/Navbar";
@@ -11,11 +11,11 @@ import Navbar from "../../Components/Navbar/Navbar";
 const { Column } = Table;
 
 const Testing = () => {
-  // const project_id = useParams();
-  // const id = project_id.id;
+   const project_id = useParams();
+   const id = project_id.id;
 
   useEffect(() => {
-    // loadTrainings(id);
+    loadTrainings(id);
   }, []);
 
   const [form] = Form.useForm();
@@ -26,70 +26,70 @@ const Testing = () => {
     setFile(event.target.files[0]);
   }
 
-  // const loadTrainings = () => {
-  //   api("/Training/GetTrainingList/" + id, {
-  //     method: "GET",
-  //   })
-  //     .then((res) => {
-  //       let result = res.data;
-  //       console.log(result);
-  //       setTrainings(result.trainingList);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       let error = err.response;
-  //       if (error.success === false) {
-  //         console.log("error");
-  //       }
-  //     });
-  // };
+  const loadTrainings = () => {
+    api("/Training/GetTrainingList/" + id, {
+      method: "GET",
+    })
+      .then((res) => {
+        let result = res.data;
+        console.log(result);
+        setTrainings(result.trainingList);
+      })
+      .catch((err) => {
+        console.log(err);
+        let error = err.response;
+        if (error.success === false) {
+          console.log("error");
+        }
+      });
+  };
 
-  // const onFinish = (values) => {
-  //   console.log("Received values of form:", values);
-  //   //const testImageData = document.querySelector('input[type="file"]').files[0];
-  //   console.log(file);
-  //   let formData = new FormData();
-  //   formData.append("ProjectId", id);
-  //   formData.append("ProjectTrainingId", values["ProjectTrainingId"]);
-  //   formData.append("TestImage", file);
-  //   api("/TrainingTest", {
-  //     method: "POST",
-  //     data: formData,
-  //   })
-  //     .then((res) => {
-  //       let response = res.data;
-  //       console.log(response);
-  //       message.success({
-  //         content: response.response.message,
-  //         duration: "5",
-  //         className: "custom-class",
-  //         style: {
-  //           marginTop: "5vh",
-  //           marginRight: "5vh",
-  //           fontSize: "15px",
-  //           textAlign: "right",
-  //         },
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       let error = err.response.data.response;
-  //       // if (error.success === false) {
-  //       //   console.log(error.message);
-  //       //   message.error({
-  //       //     content: error.message,
-  //       //     duration: "5",
-  //       //     className: "custom-class",
-  //       //     style: {
-  //       //       marginTop: "5vh",
-  //       //       marginRight: "5vh",
-  //       //       fontSize: "15px",
-  //       //       textAlign: "right",
-  //       //     },
-  //       //   });
-  //       // }
-  //     });
-  // };
+  const onFinish = (values) => {
+    console.log("Received values of form:", values);
+    //const testImageData = document.querySelector('input[type="file"]').files[0];
+    console.log(file);
+    let formData = new FormData();
+    formData.append("ProjectId", id);
+    formData.append("ProjectTrainingId", values["ProjectTrainingId"]);
+    formData.append("TestImage", file);
+    api("/TrainingTest", {
+      method: "POST",
+      data: formData,
+    })
+      .then((res) => {
+        let response = res.data;
+        console.log(response);
+        message.success({
+          content: response.response.message,
+          duration: "5",
+          className: "custom-class",
+          style: {
+            marginTop: "5vh",
+            marginRight: "5vh",
+            fontSize: "15px",
+            textAlign: "right",
+          },
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        let error = err.response.data.response;
+        // if (error.success === false) {
+        //   console.log(error.message);
+        //   message.error({
+        //     content: error.message,
+        //     duration: "5",
+        //     className: "custom-class",
+        //     style: {
+        //       marginTop: "5vh",
+        //       marginRight: "5vh",
+        //       fontSize: "15px",
+        //       textAlign: "right",
+        //     },
+        //   });
+        // }
+      });
+  };
 
   return (
     <div className="container">
@@ -101,10 +101,10 @@ const Testing = () => {
             className="test-form"
             form={form}
             // name="control-hooks"
-            // onFinish={onFinish}
+             onFinish={onFinish}
           >
             <Form.Item
-              name="ProjectTrainingId"
+              name="testname"
               label="Test Name"
               rules={[{ required: true }]}
             >

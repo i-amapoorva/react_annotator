@@ -11,7 +11,8 @@ import AddImages from "./Pages/Addimages/AddImages"
 import Projects from "./LandingPage/Projects"
 import  Training from "./Pages/Training/Training";
 import Testing from "./Pages/Testing/Testing";
-// import Login from "./Pages/Login/Login";
+import Login from "./Pages/Login/Login";
+import SignUp from "./Pages/Signup/SignUp"
 // import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
 
@@ -30,14 +31,15 @@ const Site = () => {
     .split("/")
     .slice(-1)[0]
    return <Theme>
-  
    {/* {path === "login" ? <Login /> : <LandingPage />}, */}
     {path === "demo" ? <DemoSite /> : ''}
   {path === "add-images" ? <AddImages /> : '' }
-  {/* {path === "login" ? <Login />: ''} */}
-  {path === "" ? <Projects /> : '' }
+  
+  {path === "projects" ? <Projects /> : '' }
   {path=== "training" ? <Training /> : ' '}
   {path=== "testing" ? <Testing /> : ' '}
+  {path === "login" ? <Login /> : '' }
+  {path === "signup" ? <SignUp /> : ''}
   {/* {routes} */}
   
   </Theme>;

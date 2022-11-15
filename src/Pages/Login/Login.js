@@ -8,7 +8,7 @@ import TokenService from "../../Components/Service/TokenService";
 
 function Login() {
   const [form] = Form.useForm();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   /* start of login API */
   const onFinish = (values) => {
@@ -25,7 +25,8 @@ function Login() {
         TokenService.setRefreshToken(result["refreshToken"]);
         //TokenService.setPermission(result["permissions"]);
         console.log("in");
-        navigate("/projects");
+        // navigate("/projects");
+        window.location.replace("/projects");
       })
       .catch((err) => {
         let error = err.response.data;

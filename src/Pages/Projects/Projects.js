@@ -10,12 +10,12 @@ import TokenService from "../../Components/Service/TokenService";
 import TextArea from "antd/lib/input/TextArea";
 import { useNavigate } from "react-router-dom";
 
-function Projects() {
-  useEffect(() => {
-    TokenService.removeProjectDetails();
-    loadProjects();
-    loadTaskTypes();
-  }, []);
+// function Projects() {
+//   useEffect(() => {
+//     TokenService.removeProjectDetails();
+//     loadProjects();
+//     loadTaskTypes();
+//   }, []);
 
   const navigate = useNavigate();
   const [form] = Form.useForm();
@@ -159,7 +159,9 @@ function Projects() {
       <Header />
       <div className="project-container">
         <div className="overall-cards-layout">
-          <div className="card-layout" onClick={showModal}>
+          <div className="card-layout"
+           onClick={showModal}
+           >
             <div className="project-image">
               <img src={newProjectIcon} alt="" className="card-image" />
             </div>

@@ -1,13 +1,12 @@
 import { PlusCircleOutlined } from "@ant-design/icons";
 // import { useNavigate } from "react-router-dom";
 import { Modal, Upload, Form, Button, message, Empty } from "antd";
-import React, { useState } from "react";
-// import { useLocation } from "react-router-dom";
-// import api from "../../Components/Service/Api";
+import React, { useState,useEffect } from "react";
+ import { useLocation } from "react-router-dom";
+ import api from "../../Components/Service/Api";
 import "./Addimages.css";
-// import Header from "../../Components/Header/Header";
 import Navbar from "../../Components/Navbar/Navbar"
-// import TokenService from "../../Components/Service/TokenService";
+ import TokenService from "../../Components/Service/TokenService";
 import Header from "../../Components/Header/Header.js"
 
 const layout = {
@@ -28,6 +27,8 @@ const tailLayout = {
   },
 };
 
+
+
 const getBase64 = (file) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -40,11 +41,11 @@ const getBase64 = (file) =>
 
 const AddImages = () => {
   const [form] = Form.useForm();
-  // const Details = useLocation();
+  //  const Details = useLocation();
   const [loader, setLoader] = useState(false);
   // const navigate = useNavigate();
-  // const projectDetails = TokenService.getProjectDetails();
-  // const id = projectDetails.id;
+   const projectDetails = TokenService.getProjectDetails();
+  const id = projectDetails.id;
 
   const onFinish = (values) => {
     console.log(values);
@@ -84,57 +85,57 @@ const AddImages = () => {
   //   this.setState({ fileList });
   // };
 
-  // const handleSubmit = (event) => {
-  //   setLoader(true);
-  //   console.log(fileList);
-  //   let formData = new FormData();
-  //   formData.append("ProjectId", id);
-  //   fileList.map((i) => {
-  //     return formData.append("Images", i.originFileObj);
-  //   });
-  //   api("/ProjectImage/upload", {
-  //     method: "POST",
-  //     data: formData,
-  //     // headers: {
-  //     //   "Content-Type": "multipart/form-data"
-  //     // }
-  //   })
-  //     .then((res) => {
-  //       let response = res.data;
-  //       console.log(response);
-  //       message.success({
-  //         content: response.response.message,
-  //         duration: "5",
-  //         className: "custom-class",
-  //         style: {
-  //           marginTop: "5vh",
-  //           marginRight: "5vh",
-  //           fontSize: "15px",
-  //           textAlign: "right",
-  //         },
-  //       });
-  //       setLoader(false);
-  //       // navigate("/add-images/" +id);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       let error = err.response.data.response;
-  //       if (error.success === false) {
-  //         console.log(error.message);
-  //         message.error({
-  //           content: error.message,
-  //           duration: "5",
-  //           className: "custom-class",
-  //           style: {
-  //             marginTop: "5vh",
-  //             marginRight: "5vh",
-  //             fontSize: "15px",
-  //             textAlign: "right",
-  //           },
-  //         });
-  //       }
-  //     });
-  // };
+  const handleSubmit = (event) => {
+    setLoader(true);
+    console.log(fileList);
+    let formData = new FormData();
+    formData.append("ProjectId", id);
+    fileList.map((i) => {
+      return formData.append("Images", i.originFileObj);
+    });
+    api("/ProjectImage/upload", {
+      method: "POST",
+      data: formData,
+      // headers: {
+      //   "Content-Type": "multipart/form-data"
+      // }
+    })
+      .then((res) => {
+        let response = res.data;
+        console.log(response);
+        message.success({
+          content: response.response.message,
+          duration: "5",
+          className: "custom-class",
+          style: {
+            marginTop: "5vh",
+            marginRight: "5vh",
+            fontSize: "15px",
+            textAlign: "right",
+          },
+        });
+        setLoader(false);
+        // navigate("/add-images/" +id);
+      })
+      .catch((err) => {
+        console.log(err);
+        let error = err.response.data.response;
+        if (error.success === false) {
+          console.log(error.message);
+          message.error({
+            content: error.message,
+            duration: "5",
+            className: "custom-class",
+            style: {
+              marginTop: "5vh",
+              marginRight: "5vh",
+              fontSize: "15px",
+              textAlign: "right",
+            },
+          });
+        }
+      });
+  };
 
   const uploadButton = (
     <div>
@@ -192,7 +193,7 @@ const AddImages = () => {
               <Button
                 type="primary"
                 htmlType="submit"
-                // onClick={handleSubmit}
+                onClick={handleSubmit}
                 className="img-submit-btn"
                 loading={loader}
               >
