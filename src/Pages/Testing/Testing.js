@@ -7,12 +7,14 @@ import api from "../../Components/Service/Api";
 import "./Testing.css";
 import Header from "../../Components/Header/Header";
 import Navbar from "../../Components/Navbar/Navbar";
+import TokenService from "../../Components/Service/TokenService";
 
 const { Column } = Table;
 
 const Testing = () => {
    const project_id = useParams();
-   const id = project_id.id;
+   const projectDetails = TokenService.getProjectDetails();
+   const id = projectDetails.id;
 
   useEffect(() => {
     loadTrainings(id);
@@ -21,9 +23,11 @@ const Testing = () => {
   const [form] = Form.useForm();
   const [Trainings, setTrainings] = useState([]);
   const [file, setFile] = useState();
+  const [testname, setTestName] = useState();
 
   function handleFileChange(event) {
     setFile(event.target.files[0]);
+    
   }
 
   const loadTrainings = () => {
@@ -48,13 +52,18 @@ const Testing = () => {
     console.log("Received values of form:", values);
     //const testImageData = document.querySelector('input[type="file"]').files[0];
     console.log(file);
+    console.log(testname);
     let formData = new FormData();
+    formData.append("TestingName",testname );
     formData.append("ProjectId", id);
     formData.append("ProjectTrainingId", values["ProjectTrainingId"]);
     formData.append("TestImage", file);
-    api("/TrainingTest", {
+    api("/Testing/Inference", {
       method: "POST",
       data: formData,
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }
     })
       .then((res) => {
         let response = res.data;
@@ -109,7 +118,10 @@ const Testing = () => {
               rules={[{ required: true }]}
             >
               
-              <Input />
+              <Input
+              // value={""}
+              onChange={({ target }) => setTestName(target.value)}
+            />
             </Form.Item>
             <Form.Item
               name="ProjectTrainingId"
@@ -141,7 +153,7 @@ const Testing = () => {
             >
               <Input
                 type="file"
-                name="resume"
+                name=" "
                 onChange={handleFileChange}
               ></Input>
             </Form.Item>

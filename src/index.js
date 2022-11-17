@@ -13,6 +13,7 @@ import  Training from "./Pages/Training/Training";
 import Testing from "./Pages/Testing/Testing";
 import Login from "./Pages/Login/Login";
 import SignUp from "./Pages/Signup/SignUp"
+// import Annotate from "./LandingPage/Annotate"
 // import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
 
@@ -40,6 +41,7 @@ const Site = () => {
   {path=== "testing" ? <Testing /> : ' '}
   {path === "login" ? <Login /> : '' }
   {path === "signup" ? <SignUp /> : ''}
+  {/* {path === "annotate" ? <Annotate /> : ''} */}
   {/* {routes} */}
   
   </Theme>;

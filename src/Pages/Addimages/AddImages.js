@@ -90,15 +90,26 @@ const AddImages = () => {
     console.log(fileList);
     let formData = new FormData();
     formData.append("ProjectId", id);
-    fileList.map((i) => {
-      return formData.append("Images", i.originFileObj);
+    //formData.append("Images", fileList)
+    
+    // for (let index = 0; index < fileList.length; index++) {
+    //   formData.append("Images", fileList[index].originFileObj);      
+    // }
+
+    // fileList.map((i) => {
+    //   return formData.append("Images", i.originFileObj);
+    // });
+
+    fileList.forEach((i) => {
+      // console.log(i);
+      formData.append("Images", i.originFileObj);
     });
     api("/ProjectImage/upload", {
       method: "POST",
       data: formData,
-      // headers: {
-      //   "Content-Type": "multipart/form-data"
-      // }
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }
     })
       .then((res) => {
         let response = res.data;
